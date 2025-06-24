@@ -107,6 +107,7 @@ version = "0.2.0"
 name = "cmdpal-translate"
 version = "0.1.0"
 dependencies = [
+ "base64",
  "cmdpal",
  "cmdpal-packaging",
  "reqwest",
