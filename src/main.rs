@@ -112,8 +112,8 @@ fn main() -> WinResult<()> {
             println!("Search text updated: {}", new.to_string_lossy());
             let query_reach_time = std::time::Instant::now();
             let last_request_time = Arc::clone(&last_request_time);
-            let page = page.base.to_object();
             let agg_translator = agg_translator.clone();
+            let page = page.to_object();
             if new.is_empty() {
                 let mut guard = page.items_mut()?;
                 *guard = vec![];
@@ -124,7 +124,7 @@ fn main() -> WinResult<()> {
                 return Ok(());
             }
             std::thread::spawn(move || -> Option<()> {
-                let mut loading_guard = page.base.loading_mut().ok()?;
+                let mut loading_guard = page.loading_mut().ok()?;
                 *loading_guard = true;
                 drop(loading_guard);
 
